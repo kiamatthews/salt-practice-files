@@ -39,5 +39,5 @@ hogwarts-build-script:
   cmd.wait:
     - name: npm run-script build
     - cwd: /home/hogwarts_www/site
-    - onchanges:
-      - file: /home/hogwarts_www/site/*
+    - watch:
+      - file: hogwarts-source
