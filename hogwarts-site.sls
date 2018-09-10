@@ -17,8 +17,14 @@ hogwarts-site-user:
 #        - sls: nodejs-package #this state won't run unless the steps from this other state were completed
 
 #### using gitfs and managed files ####
-/home/hogwarts_www/site:
+#/home/hogwarts_www/site:
+#  file.recurse:
+#     - source: salt://hogwarts-site
+#     - user: hogwarts_www
+
+hogwarts-source:
   file.recurse:
+     - name: /home/hogwarts_www/site
      - source: salt://hogwarts-site
      - user: hogwarts_www
 
@@ -26,8 +32,8 @@ hogwarts-npm-install:
   cmd.wait:
     - name: npm install
     - cwd: /home/hogwarts_www/site
-    - onchanges:
-      - file: salt://hogwarts-site/* # this state only runs if hogwarts source state is run (ie: the files in that dir change)
+    - watch:
+      - file: hogwarts-source # this state only runs if hogwarts source state is run (ie: the files in that dir change)
 
 hogwarts-build-script:
   cmd.wait:
