@@ -26,12 +26,12 @@ hogwarts-npm-install:
   cmd.wait:
     - name: npm install
     - cwd: /home/hogwarts_www/site
-    - watch:
+    - onchanges:
       - file: salt://hogwarts-site/* # this state only runs if hogwarts source state is run (ie: the files in that dir change)
 
 hogwarts-build-script:
   cmd.wait:
     - name: npm run-script build
     - cwd: /home/hogwarts_www/site
-    - watch:
+    - onchanges:
       - file: /home/hogwarts_www/site/*
