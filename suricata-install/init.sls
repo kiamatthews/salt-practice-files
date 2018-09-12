@@ -53,11 +53,11 @@ suricata:
     - require:
         - pkg: suricata
 
-#/etc/default/suricata:
-#  file.managed:
-#    - source: salt://suricata-install/files/suricata-default-config
-#    - user: root
-#    - group: root
-#    - mode: 644
-#    - require:
-#        - pkg: suricata
+/etc/default/suricata:
+  file.managed:
+    - source: salt://suricata-install/files/suricata-default-config
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+        - pkg: suricata
