@@ -26,7 +26,7 @@ suricata-deps:
 
 suricata:
   pkgrepo.managed:
-    - ppa: ppa:oisf/suricata-stable
+    - ppa: oisf/suricata-stable
   pkg:
     - installed
   service:
