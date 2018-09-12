@@ -1,5 +1,3 @@
-{% set version = '4.0.0' %}
-
 suricata-deps:
   pkg:
     - latest
@@ -27,16 +25,17 @@ suricata-deps:
       - pkg-config
 
 suricata:
+  pkgrepo.managed:
+    - ppa: ppa:oisf/suricata-stable
   pkg:
     - installed
-    - sources:
-        - "https://www.openinfosecfoundation.org/downloads/suricata-{{ version }}.tar.gz"
-    - cwd: suricata-{{ version }}
-    - cmd.run: ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var && make && make install
   service:
     - running
     - watch:
       - file: /etc/suricata/suricata.yaml
+
+#suricata-build:
+#  - cmd.run: ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var && make && make install
 
 
 /etc/suricata/suricata.yaml:
@@ -54,11 +53,11 @@ suricata:
     - require:
         - pkg: suricata
 
-/etc/default/suricata:
-  file.managed:
-    - source: salt://suricata-install/files/suricata-default-config
-    - user: root
-    - group: root
-    - mode: 644
-    - require:
-        - pkg: suricata
+#/etc/default/suricata:
+#  file.managed:
+#    - source: salt://suricata-install/files/suricata-default-config
+#    - user: root
+#    - group: root
+#    - mode: 644
+#    - require:
+#        - pkg: suricata
