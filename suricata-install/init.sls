@@ -4,8 +4,8 @@ suricata-deps:
   pkg:
     - latest
     - names:
-      - libprcre3
-      - libprcre3-dbg
+      - libpcre3
+      - libpcre3-dbg
       - libpcre3-dev
       - build-essential
       - make
@@ -35,12 +35,12 @@ suricata:
   service:
     - running
     - watch:
-      - file: /etc/suricata/suricata.yml
+      - file: /etc/suricata/suricata.yaml
 
 
-/etc/suricata/suricata.yml:
+/etc/suricata/suricata.yaml:
   file.managed:
-    - source: salt://suricata-install/files/suricata.yml
+    - source: salt://suricata-install/files/suricata.yaml
     - user: root
     - group: root
     - mode: 644
@@ -50,8 +50,5 @@ suricata:
 /etc/suricata/rules:
   file.recurse:
     - source: salt://suricata-install/files/rules
-    - user: root
-    - group: root
-    - mode: 644
     - require:
         - pkg: suricata
