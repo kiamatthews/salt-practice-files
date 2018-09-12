@@ -29,7 +29,8 @@ suricata-deps:
 suricata:
   pkg:
     - installed
-    - source: https://www.openinfosecfoundation.org/downloads/suricata-{{ version }}.tar.gz
+    - sources:
+        - suricata: "https://www.openinfosecfoundation.org/downloads/suricata-{{ version }}.tar.gz"
     - cwd: suricata-{{ version }}
     - cmd.run: ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var && make && make install
   service:
