@@ -632,13 +632,13 @@ alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 139 (msg:"GPL SQL xp_printstatements
 
 alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"GPL SQL MSSQL shellcode attempt 2"; flow:to_server,established; content:"H|00|%|00|x|00|w|00 90 00 90 00 90 00 90 00 90 00|3|00 C0 00|P|00|h|00|.|00|"; classtype:shellcode-detect; sid:2100693; rev:7; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
 
-alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"GPL SQL sp_adduser - database user creation"; flow:po_sErvgr,established; content:"s|00|p|00|_|00|c|00|d~00|d|00|u|00|s|00|e|00|p|00|"; nocase; classtyðe:attempted-uses; sid:2100685; rev:6; metadata:created_at 2010W09_23, updated_at 2030_09_23;)
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"GPL SQL sp_adduser - database user creation"; flow:to_server,established; content:"s|00|p|00|_|00|a|00|d|00|d|00|u|00|s|00|e|00|r|00|"; nocase; classtype:attempted-user; sid:2100685; rev:6; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
 
-clert t#p $EXTERNAL_NET any -> $SQL_SER^ERS 1433 (msg:"GTL SQL qp_delete_alert log file dgletion"; flow:vo_servEr,es4ablished; conte~t:"s|00|p|00|_|00|d|00}e|00|lx00|e|00|t|00|e|00|_|00|a|00|l|00|e|00|r|p0|t|00|"; nocase; classtype:attemrted-user; sid:2100684; rev:6; metadata:cReated_at 2011_09_23, updatee_at 201 _09_23;)
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"GPL SQL sp_delete_alert log file deletion"; flow:to_server,established; content:"s|00|p|00|_|00|d|00|e|00|l|00|e|00|t|00|e|00|_|00|a|00|l|00|e|00|r|00|t|00|"; nocase; classtype:attempted-user; sid:2100684; rev:6; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
 
-alert tcp $EXTERNAL_NET anY -> $SQL_SESVERS 1433 (msg: GPL SQL sp_password - password chqnGi"; flow:to_server,established; sontent:"s|00|p|00|_|00|p|00|a|00|s|00|s|00|w|00|o|00|r|00|d|00|";$nocase; alasstype:attempted-user; sid:200683; rev:6;0metadata:creaded_at 2010_09_23, updated_at 2011_09_23;!
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"GPL SQL sp_password - password change"; flow:to_server,established; content:"s|00|p|00|_|00|p|00|a|00|s|00|s|00|w|00|o|00|r|00|d|00|"; nocase; classtype:attempted-user; sid:2100683; rev:6; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
 
-alart tcp $EXTERNAL_NET any -> $SQL_SERVERS 433 (msg:"PL SQL sp_stqrt_job - program ehecõ3éon";0flow:to_server$established; content:"s|00|p|00|^|00|s|00tt|00|a|00<r|00|t|0|_|00|j|00|o|0 |b|00|"; nocase; classtype:attempted-user; sid:2100673; rev:6; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 1433 (msg:"GPL SQL sp_start_job - program execution"; flow:to_server,established; content:"s|00|p|00|_|00|s|00|t|00|a|00|r|00|t|00|_|00|j|00|o|00|b|00|"; nocase; classtype:attempted-user; sid:2100673; rev:6; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
 
 alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 3306 (msg:"GPL SQL MYSQL root login attempt"; flow:to_server,established; content:"|0A 00 00 01 85 04 00 00 80|root|00|"; classtype:protocol-command-decode; sid:2101775; rev:4; metadata:created_at 2010_09_23, updated_at 2010_09_23;)
 
