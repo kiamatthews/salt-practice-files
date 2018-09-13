@@ -1,5 +1,3 @@
-{% set version = '4.0.5' %}
-
 suricata-deps:
   pkg:
     - latest
