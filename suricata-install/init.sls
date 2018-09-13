@@ -26,27 +26,16 @@ suricata-deps:
       - libjansson-dev
       - pkg-config
 
-#suricata:
-#  pkgrepo.managed:
-#    - ppa: oisf/suricata-stable
-#  pkg:
-#    - installed
-#  service:
-#    - running
-#    - watch:
-#      - file: /etc/suricata/suricata.yaml
+suricata:
+  pkgrepo.managed:
+    - ppa: oisf/suricata-stable
+  pkg:
+    - installed
+  service:
+    - running
+    - watch:
+      - file: /etc/suricata/suricata.yaml
 
-suricata-source-extract:
-  archive.extracted:
-    - name: /tmp/suricata-{{ version }}
-    - source: https://www.openinfosecfoundation.org/download/suricata-{{ version }}.tar.gz
-
-suricata-build:
-  cmd.run:
-    - name: ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var && make && make install
-    - cwd: /tmp/suricata-{{ version }}
-    - require:
-        - archive: suricata-source-extract
 
 /etc/suricata/suricata.yaml:
   file.managed:
@@ -55,13 +44,13 @@ suricata-build:
     - group: root
     - mode: 644
     - require:
-        - cmd: suricata-build
+        - pkg: suricata
 
 /etc/suricata/rules:
   file.recurse:
     - source: salt://suricata-install/files/rules
     - require:
-        - cmd: suricata-build
+        - pkg: suricata
 
 /etc/default/suricata:
   file.managed:
@@ -70,4 +59,4 @@ suricata-build:
     - group: root
     - mode: 644
     - require:
-        - cmd: suricata-build
+        - pkg: suricata
