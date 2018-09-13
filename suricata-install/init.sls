@@ -24,13 +24,15 @@ suricata-deps:
       - libjansson-dev
       - pkg-config
 
-suricata:
+suricata-repo:
   pkgrepo.managed:
     - ppa: oisf/suricata-stable
-  pkg:
-    - installed
-  service:
-    - running
+
+suricata:
+  pkg.installed:
+    - require:
+      - pkgrepo.managed: suricata-repo
+  service.running:
     - watch:
       - file: /etc/suricata/suricata.yaml
 
