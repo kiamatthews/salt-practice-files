@@ -34,10 +34,9 @@ suricata:
     - watch:
       - file: /etc/suricata/suricata.yaml
 
-
-/etc/suricata/suricata.yaml:
+/etc/default/suricata:
   file.managed:
-    - source: salt://suricata-install/files/suricata.yaml
+    - source: salt://suricata-install/files/suricata-default-config
     - user: root
     - group: root
     - mode: 644
@@ -50,9 +49,9 @@ suricata:
     - require:
         - pkg: suricata
 
-/etc/default/suricata:
+/etc/suricata/suricata.yaml:
   file.managed:
-    - source: salt://suricata-install/files/suricata-default-config
+    - source: salt://suricata-install/files/suricata.yaml
     - user: root
     - group: root
     - mode: 644
