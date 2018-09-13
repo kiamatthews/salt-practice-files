@@ -454,6 +454,8 @@ logging:
 ##
 
 # Linux high speed capture support
+
+## testing af-packet stanza - remove for prod ##
 af-packet:
   - interface: eth0
     threads: 1
@@ -464,6 +466,45 @@ af-packet:
     #copy-iface: enp24s0f1
     buffer-size: 64535
     use-mmap: yes
+
+## prod af-packet stanzas - uncomment for prod ##
+#af-packet:
+#  - interface: enp24s0f0
+#    threads: 1
+#    defrag: yes
+#    cluster-type: cluster_flow
+#    cluster-id: 98
+#    #copy-mode: ips
+#    #copy-iface: enp24s0f1
+#    buffer-size: 64535
+#    use-mmap: yes
+# - interface: enp24s0f1
+#    threads: 1
+#    defrag: yes
+#    cluster-type: cluster_flow
+#    cluster-id: 97
+#    #copy-mode: ips
+#    #copy-iface: enp24s0f0
+#    buffer-size: 64535
+#    use-mmap: yes
+# - interface: enp24s0f2
+#    threads: 1
+#    defrag: yes
+#    cluster-type: cluster_flow
+#    cluster-id: 96
+#    #copy-mode: ips
+#    #copy-iface: enp24s0f3
+#    buffer-size: 64535
+#    use-mmap: yes
+#  - interface: enp24s0f3
+#    threads: 1
+#    cluster-id: 95
+#    defrag: yes
+#    cluster-type: cluster_flow
+#    #copy-mode: ips
+#    #copy-iface: enp24s0f2
+#    buffer-size: 64535
+#    use-mmap: yes
 
 # Cross platform libpcap capture support
 #- interface: eth0
