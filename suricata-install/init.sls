@@ -31,7 +31,7 @@ suricata-repo:
 suricata:
   pkg.installed:
     - require:
-      - pkgrepo.managed: suricata-repo
+      - pkgrepo: suricata-repo
   service.running:
     - watch:
       - file: /etc/suricata/suricata.yaml
